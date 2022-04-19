@@ -1,0 +1,6 @@
+define KMACHINE geode
+define KTYPE standard
+define KARCH x86
+
+include ktypes/standard
+include geode.scc

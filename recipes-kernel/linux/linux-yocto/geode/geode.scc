@@ -1,0 +1,15 @@
+include cfg/8250.scc
+include cfg/boot-live.scc
+include cfg/sound.scc
+include cfg/usb-mass-storage.scc
+include cfg/vesafb.scc
+include features/initramfs/initramfs.scc
+include features/input/input.scc
+include features/netfilter/netfilter.scc
+include features/pci/pci.scc
+include features/scsi/cdrom.scc
+include features/scsi/disk.scc
+include features/usb/ehci-hcd.scc
+kconf hardware geode-cpu.cfg
+kconf hardware geode-drivers.cfg
+

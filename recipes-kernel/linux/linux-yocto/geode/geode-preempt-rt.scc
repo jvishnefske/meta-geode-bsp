@@ -1,0 +1,7 @@
+define KMACHINE geode
+define KTYPE preempt-rt
+define KARCH i386
+
+include ktypes/preempt-rt
+
+include geode.scc
