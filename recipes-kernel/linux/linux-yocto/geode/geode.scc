@@ -8,10 +8,16 @@ include features/input/input.scc
 include features/pci/pci.scc
 include features/scsi/disk.scc
 include features/usb/ehci-hcd.scc
-include features/usb/xhci-hcd.scc
 include features/usb/ohci-hcd.scc
 include features/usb/uhci-hcd.scc
+include features/usb/xhci-hcd.scc
 
+include features/usb/serial-all.scc
+include features/wifi/wifi-pci.scc
+include features/wifi/wifi-usb.scc
+#include features/media/media-radio.scc
+#include features/media/media-usb-tv.scc
 kconf hardware geode-cpu.cfg
 kconf hardware geode-drivers.cfg
+#kconf hardware geode-tweaks.cfg
 
