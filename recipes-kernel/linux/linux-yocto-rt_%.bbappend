@@ -1,3 +1,3 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/linux-yocto:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/linux-yocto:"
 SRC_URI += "file://geode/;type=kmeta;subdir=${KMETA}"
-COMPATIBLE_MACHINE_geode = "geode"
+COMPATIBLE_MACHINE:geode = "geode"
