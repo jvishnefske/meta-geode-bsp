@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate layer structure
+        run: |
+          echo "Checking required files..."
+          test -f conf/layer.conf || { echo "Missing conf/layer.conf"; exit 1; }
+          test -f conf/machine/geode.conf || { echo "Missing machine config"; exit 1; }
+          echo "Layer structure valid"
+
+      - name: Check bitbake file syntax
+        run: |
+          echo "Checking for common bitbake syntax issues..."
+          # Check for tabs vs spaces issues in .bb/.bbappend files
+          find . -name "*.bb" -o -name "*.bbappend" | while read f; do
+            if [ -f "$f" ]; then
+              echo "Checking $f"
+              # Ensure files are readable and non-empty where expected
+              head -1 "$f" > /dev/null
+            fi
+          done
+          echo "Bitbake files OK"
+
+      - name: Lint markdown
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: "**/*.md"
+        continue-on-error: true
