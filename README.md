@@ -1,34 +1,37 @@
-This README file contains information on the contents of the meta-geode layer.
-This provides support for a (quite ancient) amd geode processor. While it is possible to build a i586 based yocto root filesystem without much difficulty the kernel metadata contained in openembedded core tends to "upgrade" the kernel architecture to core2 or newer which will not run on thes old boards.
+# meta-geode-bsp
 
-Dependencies
-============
+Yocto BSP layer for AMD Geode processors. Provides proper i586 kernel configuration for legacy Geode-based systems (ALIX boards, Soekris, etc.) that cannot run on modern x86 kernels optimized for Core2 or newer architectures.
 
-  URI: openembedded-core
-  branch: dunfel
+## Quick Start
 
+```bash
+# Clone into your Yocto layers directory
+git clone https://github.com/jvishnefske/meta-geode-bsp.git
 
-Patches
-=======
+# Add layer to your build
+bitbake-layers add-layer meta-geode-bsp
 
-Please submit any patches against the meta-geode layer to the xxxx mailing list (xxxx@zzzz.org)
-and cc: the maintainer:
+# Build for Geode target
+MACHINE=geode bitbake core-image-minimal
+```
 
-Maintainer: John Vishnefske <jvishnefske@acm.org>
+## Dependencies
 
-Table of Contents
-=================
+- **openembedded-core** (branch: dunfell)
 
-  I. Adding the meta-geode layer to your build
- II. Misc
+## Layer Contents
 
+- **Machine configuration**: `conf/machine/geode.conf` - Geode-specific tuning (`-march=geode -m32`)
+- **Kernel metadata**: linux-yocto bbappends with Geode kernel configuration
 
-I. Adding the meta-geode layer to your build
-=================================================
+## Alternative: kas Configuration
 
-Run 'bitbake-layers add-layer meta-geode'
+For automated build setup, see the kas configuration at [github.com/jvishnefske/meta-laptop](https://github.com/jvishnefske/meta-laptop).
 
-II. Misc
-========
+## Maintainer
 
-there is an example kas geode.yaml config at [github.com/jvishnefske/meta-laptop/]. The kas tool may be used to setup a openembedded folder structure, and manage local configuration.
+John Vishnefske <jvishnefske@acm.org>
+
+## License
+
+MIT (see COPYING.MIT)
